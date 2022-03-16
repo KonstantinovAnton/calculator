@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,14 +32,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button clear;
     Button zero;
     Button button1;
+    Button history;
 
     String act;
     String sign;
     int activiti;
+    int index;
+
 float res;
     float num1;
     float num2;
+
+
+    String[] arrayOfStrings;
+
+
     boolean fnum;
+
+
 
 
     @Override
@@ -48,6 +59,8 @@ float res;
 
         act = "";
         fnum = true;
+        index = 0;
+        arrayOfStrings = new String[10];
 
         firstNumber = findViewById(R.id.firstNumber);
         secondNumber = findViewById(R.id.secondNumber);
@@ -71,6 +84,7 @@ float res;
         divide = findViewById(R.id.divide);
         equals = findViewById(R.id.equals);
         clear = findViewById(R.id.clear);
+        history = findViewById(R.id.history);
 
 
         one.setOnClickListener(this);
@@ -88,6 +102,7 @@ float res;
         multiply.setOnClickListener(this);
         clear.setOnClickListener(this);
         equals.setOnClickListener(this);
+        history.setOnClickListener(this);
         zero.setOnClickListener(this);
 
 
@@ -190,6 +205,7 @@ float res;
 
 
                 signArea.setText("/");
+
                 break;
 
 
@@ -201,25 +217,25 @@ float res;
                 num2 = Float.valueOf(secondNumber.getText().toString());
                 if(activiti==1){
                 res = num1 + num2;
-                result.setText("= " + String.valueOf(res));
-                  break;
+                arrayOfStrings[index] = Float.toString(num1) + " + " + Float.toString(num2)+" = "+Float.toString(res);
                 }
                 if(activiti==2){
                     res = num1 - num2;
-                    result.setText("= " + String.valueOf(res));
-                    break;
+                    arrayOfStrings[index] = Float.toString(num1) + " - " + Float.toString(num2)+" = "+Float.toString(res);
                 }
                 if(activiti==3){
                     res = num1 * num2;
-                    result.setText("= " + String.valueOf(res));
-                    break;
+                    arrayOfStrings[index] = Float.toString(num1) + " * " + Float.toString(num2)+" = "+Float.toString(res);
                 }
                 if(activiti==4){
                     res = num1 / num2;
-                    result.setText("= " + String.valueOf(res));
-                    break;
+                    arrayOfStrings[index] = Float.toString(num1) + " / " + Float.toString(num2)+" = "+Float.toString(res);
                 }
 
+                result.setText("= " + String.valueOf(res));
+
+                index++;
+                break;
 
 
             case R.id.clear:
@@ -228,6 +244,15 @@ float res;
                 result.setText("");
                 signArea.setText("");
                 fnum = !fnum;
+
+                break;
+
+            case R.id.history:
+                Intent intent = new Intent(this,MainActivity2.class);
+                intent.putExtra("values",arrayOfStrings);
+                startActivity(intent);
+
+
 
                 break;
         }
