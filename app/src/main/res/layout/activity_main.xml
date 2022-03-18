@@ -69,6 +69,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/secondNumber"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/historyWindow"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:textSize="18pt"
+        android:background="#627397"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/buttonTable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
         android:padding="5dp"
@@ -310,17 +323,40 @@
             >
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/history"
+                android:id="@+id/backward"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:background="@drawable/button"
-                android:text="история"
+                android:text="назад"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/forward"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/button"
+                android:text="вперед"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/getRes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="2"
+                android:background="@drawable/button"
+                android:text="взять значение"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
 
         </TableRow>
+
+
+
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

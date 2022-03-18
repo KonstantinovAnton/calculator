@@ -10,140 +10,26 @@
     <TextView
         android:id="@+id/historyHeader"
 
-        android:layout_width="0dp"
-        android:layout_height="90dp"
-
-
+        android:layout_width="419dp"
+        android:layout_height="80dp"
 
 
         android:background="#627397"
         android:gravity="center"
 
-        android:textSize="20pt"
         android:text="История"
         android:textColor="@color/black"
+        android:textSize="20pt"
 
+        app:layout_constraintEnd_toEndOf="parent"
+
+
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TableLayout
-
-        android:paddingTop="0dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        />
 
 
-        android:id="@+id/values"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#2E3543"
-
-        app:layout_constraintBottom_toTopOf="@id/backTable"
-        app:layout_constraintTop_toBottomOf="@id/historyHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-
-
-        >
-
-        <TableRow android:layout_weight="1">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/but1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow android:layout_weight="1">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/but2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow android:layout_weight="1">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/but3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow android:layout_weight="1">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/but4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow android:layout_weight="1">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/but5"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow android:layout_weight="1">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/but6"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow android:layout_weight="1">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/but7"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow android:layout_weight="1">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/but8"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-        </TableRow>
-
-
-    </TableLayout>
 
 
     <TableLayout

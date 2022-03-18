@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.FloatArrayEvaluator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView secondNumber;
     TextView result;
     TextView signArea;
+    TextView historyWindow;
 
     Button one;
     Button two;
@@ -32,22 +34,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button clear;
     Button zero;
     Button button1;
-    Button history;
+    Button getRes;
+    Button forward;
+    Button backward;
 
     String act;
     String sign;
+
     int activiti;
     int index;
+    int indexForShow;
+
 
 float res;
     float num1;
     float num2;
+    float[] arrayOfResults;
 
+    String[] arrayOfOperations;
 
-    String[] arrayOfStrings;
 
 
     boolean fnum;
+    boolean firstNumberIsAdded;
+    boolean secondNumberIsAdded;
 
 
 
@@ -59,12 +69,19 @@ float res;
 
         act = "";
         fnum = true;
-        index = 0;
-        arrayOfStrings = new String[10];
+        firstNumberIsAdded = false;
+        secondNumberIsAdded = false;
+
+        index = -1;
+
+
+        arrayOfOperations = new String[10];
+        arrayOfResults = new float[10];
 
         firstNumber = findViewById(R.id.firstNumber);
         secondNumber = findViewById(R.id.secondNumber);
         result = findViewById(R.id.result);
+        historyWindow = findViewById(R.id.historyWindow);
         signArea = findViewById(R.id.signArea);
 
         zero = findViewById(R.id.zero);
@@ -84,7 +101,11 @@ float res;
         divide = findViewById(R.id.divide);
         equals = findViewById(R.id.equals);
         clear = findViewById(R.id.clear);
-        history = findViewById(R.id.history);
+
+        getRes = findViewById(R.id.getRes);
+        forward = findViewById(R.id.forward);
+        backward = findViewById(R.id.backward);
+
 
 
         one.setOnClickListener(this);
@@ -102,7 +123,9 @@ float res;
         multiply.setOnClickListener(this);
         clear.setOnClickListener(this);
         equals.setOnClickListener(this);
-        history.setOnClickListener(this);
+        getRes.setOnClickListener(this);
+        forward.setOnClickListener(this);
+        backward.setOnClickListener(this);
         zero.setOnClickListener(this);
 
 
@@ -129,10 +152,12 @@ float res;
                     numText = firstNumber.getText().toString();
                     numText += button.getText().toString();
                     firstNumber.setText(numText);
+                    firstNumberIsAdded = true;
                 } else {
                     numText = secondNumber.getText().toString();
                     numText += button.getText().toString();
                     secondNumber.setText(numText);
+                    secondNumberIsAdded = true;
                 }
 
 
@@ -213,28 +238,47 @@ float res;
 
             case R.id.equals:
 
-                num1 = Float.valueOf(firstNumber.getText().toString());
-                num2 = Float.valueOf(secondNumber.getText().toString());
-                if(activiti==1){
-                res = num1 + num2;
-                arrayOfStrings[index] = Float.toString(num1) + " + " + Float.toString(num2)+" = "+Float.toString(res);
-                }
-                if(activiti==2){
-                    res = num1 - num2;
-                    arrayOfStrings[index] = Float.toString(num1) + " - " + Float.toString(num2)+" = "+Float.toString(res);
-                }
-                if(activiti==3){
-                    res = num1 * num2;
-                    arrayOfStrings[index] = Float.toString(num1) + " * " + Float.toString(num2)+" = "+Float.toString(res);
-                }
-                if(activiti==4){
-                    res = num1 / num2;
-                    arrayOfStrings[index] = Float.toString(num1) + " / " + Float.toString(num2)+" = "+Float.toString(res);
-                }
+                if( firstNumberIsAdded == true && secondNumberIsAdded == true) {
 
-                result.setText("= " + String.valueOf(res));
+                    num1 = Float.valueOf(firstNumber.getText().toString());
+                    num2 = Float.valueOf(secondNumber.getText().toString());
 
-                index++;
+                    index++;
+
+                    if (index == 10) {
+                        for (int i = 0; i < 9; i++) {
+                            arrayOfResults[i] = arrayOfResults[i + 1];
+                            arrayOfOperations[i] = arrayOfOperations[i + 1];
+                        }
+                        index = 9;
+                    }
+
+                    if (activiti == 1) {
+
+                        res = num1 + num2;
+                        arrayOfOperations[index] = Float.toString(num1) + " + " + Float.toString(num2) + " = " + Float.toString(res);
+                    }
+                    if (activiti == 2) {
+                        res = num1 - num2;
+                        arrayOfOperations[index] = Float.toString(num1) + " - " + Float.toString(num2) + " = " + Float.toString(res);
+
+                    }
+                    if (activiti == 3) {
+                        res = num1 * num2;
+                        arrayOfOperations[index] = Float.toString(num1) + " * " + Float.toString(num2) + " = " + Float.toString(res);
+
+                    }
+                    if (activiti == 4) {
+                        res = num1 / num2;
+                        arrayOfOperations[index] = Float.toString(num1) + " / " + Float.toString(num2) + " = " + Float.toString(res);
+                    }
+
+                    result.setText("= " + String.valueOf(res));
+
+                    arrayOfResults[index] = res;
+                    indexForShow = index + 1;
+
+                }
                 break;
 
 
@@ -243,16 +287,51 @@ float res;
                 secondNumber.setText("");
                 result.setText("");
                 signArea.setText("");
+                historyWindow.setText("");
                 fnum = !fnum;
+                firstNumberIsAdded = false;
+                secondNumberIsAdded = false;
 
                 break;
 
-            case R.id.history:
-                Intent intent = new Intent(this,MainActivity2.class);
-                intent.putExtra("values",arrayOfStrings);
-                startActivity(intent);
+            case R.id.backward:
+
+                firstNumber.setText("");
+                secondNumber.setText("");
+                result.setText("");
+                signArea.setText("");
+
+                if(indexForShow!=0) indexForShow--;
+                historyWindow.setText(arrayOfOperations[indexForShow]);
 
 
+
+                break;
+            case R.id.forward:
+
+                firstNumber.setText("");
+                secondNumber.setText("");
+                result.setText("");
+                signArea.setText("");
+
+
+                if(indexForShow != index) indexForShow++;
+                historyWindow.setText(arrayOfOperations[indexForShow]);
+
+
+
+                break;
+
+            case R.id.getRes:
+
+                historyWindow.setText("");
+                firstNumber.setText(Float.toString(arrayOfResults[indexForShow]));
+                secondNumber.setText("");
+                result.setText("");
+                signArea.setText("");
+                fnum = true;
+
+                firstNumberIsAdded = true;
 
                 break;
         }
