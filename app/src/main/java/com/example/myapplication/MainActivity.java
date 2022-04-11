@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button getRes;
     Button forward;
     Button backward;
+    Button goToDB;
 
     String act;
     String sign;
@@ -52,8 +53,6 @@ float res;
     float[] arrayOfResults;
 
     String[] arrayOfOperations;
-
-
 
     boolean fnum;
     boolean firstNumberIsAdded;
@@ -105,6 +104,7 @@ float res;
         getRes = findViewById(R.id.getRes);
         forward = findViewById(R.id.forward);
         backward = findViewById(R.id.backward);
+        goToDB = findViewById(R.id.goToDB);
 
 
 
@@ -127,6 +127,7 @@ float res;
         forward.setOnClickListener(this);
         backward.setOnClickListener(this);
         zero.setOnClickListener(this);
+        goToDB.setOnClickListener(this);
 
 
     }
@@ -303,10 +304,8 @@ float res;
 
                 if(indexForShow!=0) indexForShow--;
                 historyWindow.setText(arrayOfOperations[indexForShow]);
-
-
-
                 break;
+
             case R.id.forward:
 
                 firstNumber.setText("");
@@ -314,11 +313,8 @@ float res;
                 result.setText("");
                 signArea.setText("");
 
-
                 if(indexForShow != index) indexForShow++;
                 historyWindow.setText(arrayOfOperations[indexForShow]);
-
-
 
                 break;
 
@@ -333,6 +329,10 @@ float res;
 
                 firstNumberIsAdded = true;
 
+                break;
+            case R.id.goToDB:
+                Intent intent = new Intent(this,MainActivity2.class);
+                startActivity(intent);
                 break;
         }
     }

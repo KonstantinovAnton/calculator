@@ -5,30 +5,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2E3543"
-    tools:context=".MainActivity2">
+    tools:context=".MainActivity2"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/historyHeader"
+    <TableLayout
 
-        android:layout_width="419dp"
-        android:layout_height="80dp"
-
-
-        android:background="#627397"
-        android:gravity="center"
-
-        android:text="История"
-        android:textColor="@color/black"
-        android:textSize="20pt"
-
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="0dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
 
 
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/mainTable"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#2E3543"
+
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dbOutput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
-        />
 
+
+        >
+        <TableRow android:layout_weight="1"
+            >
+
+            <EditText
+                android:id="@+id/etName"
+                android:hint="Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="35dp"
+
+                >
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:hint="Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="35dp"
+                >
+
+            </EditText>
+
+
+        </TableRow>
+        <TableRow android:layout_weight="1"
+            >
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:background="@drawable/button"
+                android:textSize="30dp"
+            />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear"
+                android:background="@drawable/button"
+                android:textSize="30dp"
+            />
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+
+        android:paddingTop="0dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+
+
+        android:id="@+id/dbOutput"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#2E3543"
+
+app:layout_constraintTop_toBottomOf="@id/mainTable"
+        app:layout_constraintBottom_toTopOf="@id/backTable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+
+
+        ></TableLayout>
 
 
 
@@ -45,6 +115,7 @@
         android:layout_height="60dp"
         android:background="#2E3543"
 
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +123,7 @@
 
 
         >
+
         <TableRow android:layout_weight="1"
             >
 
